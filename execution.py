@@ -17,6 +17,7 @@ biblio.ajouter_utilisateur(user2)
 biblio.ajouter_utilisateur(user3)
 biblio.ajouter_utilisateur(user4)
 biblio.ajouter_utilisateur(user5)
+
 # Emprunt d'un livre par Aymen
 user1.emprunter_livre(biblio, "44444")
 
@@ -24,6 +25,7 @@ user1.emprunter_livre(biblio, "44444")
 user2.emprunter_livre(biblio, "44444")  # Le livre est déjà emprunté, doit déclencher une réservation
 
 user3.emprunter_livre(biblio, "33333")
+
 # Retour du livre par Aymen (ceci déclenche l’attribution au prochain réservé)
 if "44444" in user1.livres_empruntes:
     user1.livres_empruntes["44444"] -= timedelta(days=30)
@@ -36,7 +38,7 @@ user5.emprunter_livre(biblio, "44444")
 
 # supprimer livre
 # biblio.supprimer_livre("33333")
-# print("\n🗑️ Livre 'Python pour les débutants' supprimé.")
+# print("\n🗑️ Livre 'Albert Camus' supprimé.")
 
 # Affichage du catalogue
 print("\n📚 Catalogue :")
