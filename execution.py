@@ -25,6 +25,8 @@ user2.emprunter_livre(biblio, "44444")  # Le livre est déjà emprunté, doit d�
 
 user3.emprunter_livre(biblio, "33333")
 # Retour du livre par Aymen (ceci déclenche l’attribution au prochain réservé)
+if "44444" in user1.livres_empruntes:
+    user1.livres_empruntes["44444"] -= timedelta(days=30)
 user1.retourner_livre(biblio, "44444")
 
 user2.emprunter_livre(biblio, "44444")  # Ayoub devrait maintenant pouvoir emprunter le livre
@@ -33,8 +35,8 @@ user4.emprunter_livre(biblio, "44444")
 user5.emprunter_livre(biblio, "44444")
 
 # supprimer livre
-biblio.supprimer_livre("33333")
-print("\n🗑️ Livre 'Python pour les débutants' supprimé.")
+# biblio.supprimer_livre("33333")
+# print("\n🗑️ Livre 'Python pour les débutants' supprimé.")
 
 # Affichage du catalogue
 print("\n📚 Catalogue :")
