@@ -1,53 +1,57 @@
-biblio = Bibliotheque("Bibliothèque Centrale")
+biblio = Bibliotheque("Bibliothèque Universitaire")
 
-# Ajout d’un livre
-livre1 = Livre("Python pour les débutants", "Jean Dupont", "ISBN001")
-livre2 = Livre("Introduction à l’IA", "Marie Curie", "ISBN002")
-livre3 = Livre("Histoire de l’informatique", "Alan Turing", "ISBN003")
-
+# Création de livres
+livre1 = Livre("1984", "George Orwell", "44444")
+livre2 = Livre("L'Étranger", "Albert Camus", "33333")
 biblio.ajouter_livre(livre1)
 biblio.ajouter_livre(livre2)
-biblio.ajouter_livre(livre3)
 
+# Création d'utilisateurs
+user1 = Utilisateur(1, "Aymen")
+user2 = Utilisateur(2, "Ayoub")
+user3 = Utilisateur(3, "Marouane")
+user4 = Utilisateur(4, "Zakaria")
+user5 = Utilisateur(5,"Zouhair")
+biblio.ajouter_utilisateur(user1)
+biblio.ajouter_utilisateur(user2)
+biblio.ajouter_utilisateur(user3)
+biblio.ajouter_utilisateur(user4)
+biblio.ajouter_utilisateur(user5)
+# Emprunt d'un livre par Aymen
+user1.emprunter_livre(biblio, "44444")
 
-# Ajout d’un utilisateur
-util1 = Utilisateur("u1", "client1")
-util2 = Utilisateur("u2", "client2")
-biblio.ajouter_utilisateur(util1)
-biblio.ajouter_utilisateur(util2)
+# Tentative de réservation par Ayoub pour le même livre
+user2.emprunter_livre(biblio, "44444")  # Le livre est déjà emprunté, doit déclencher une réservation
 
+user3.emprunter_livre(biblio, "33333")
+# Retour du livre par Aymen (ceci déclenche l’attribution au prochain réservé)
+user1.retourner_livre(biblio, "44444")
 
-# Emprunt
-util1.emprunter_livre(biblio, "ISBN001")
-util1.emprunter_livre(biblio, "ISBN002")
-util1.emprunter_livre(biblio, "ISBN003") 
-util1.emprunter_livre(biblio, "ISBN001")
-
-#retourner
-util1.retourner_livre(biblio, "ISBN001")
-
-#
-util2.emprunter_livre(biblio, "ISBN001")
-
-# retard
-util1.livres_empruntes["ISBN001"] = datetime.now().replace(year=2024)
-util1.retourner_livre(biblio, "ISBN001")
+user2.emprunter_livre(biblio, "44444")  # Ayoub devrait maintenant pouvoir emprunter le livre
+user3.emprunter_livre(biblio, "44444")
+user4.emprunter_livre(biblio, "44444")
+user5.emprunter_livre(biblio, "44444")
 
 # supprimer livre
-biblio.supprimer_livre("ISBN001")
+biblio.supprimer_livre("33333")
 print("\n🗑️ Livre 'Python pour les débutants' supprimé.")
 
-# affichage
-
+# Affichage du catalogue
 print("\n📚 Catalogue :")
 biblio.afficher_catalogue()
 
-print("\n🧑‍🎓 Emprunts utilisateur :")
-util1.afficher_emprunts()
-
-print("\n📜 Historique :")
-util1.afficher_historique()
-
+# Affichage des historiques
+print("\nHistorique de Aymen :")
+user1.afficher_historique()
+print("\nHistorique de Ayoub :")
+user2.afficher_historique()
+print("\nHistorique de Marouane :")
+user3.afficher_historique()
+print("\nRéservations actuelles :")
+for reservations in biblio.reservations.values():
+    for r in reservations:
+        r.afficher_info() 
 print("\n📊 Statistiques :")
 biblio.afficher_statistiques()
+
 
