@@ -38,7 +38,7 @@ user5.emprunter_livre(biblio, "44444")
 
 # supprimer livre
 # biblio.supprimer_livre("33333")
-# print("\n🗑️ Livre 'Albert Camus' supprimé.")
+# print("\n🗑️ Livre 'L'Étranger' supprimé.")
 
 # Affichage du catalogue
 print("\n📚 Catalogue :")
